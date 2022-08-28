@@ -1,0 +1,26 @@
+{
+    "Rule": "test-cli",
+    "EventBusName": "default",
+    "Targets": [
+        {
+            "Id": "1",
+            "Arn": "arn:aws:sns:ap-northeast-1:817023884338:test-cli",
+            "InputTransformer": {
+                "InputPathsMap": {
+                    "EventDescription": "$.detail.eventDescription[*].latestDescription",
+                    "EventTypeCategory": "$.detail.eventTypeCategory",
+                    "EventTypeCode": "$.detail.eventTypeCode",
+                    "Region": "$.region",
+                    "StartTime": "$.detail.startTime",
+                    "Service": "$.detail.service"
+                },
+                "InputTemplate": "<EventTypeCode>"
+            },
+            "RetryPolicy": {
+                "MaximumRetryAttempts": 185,
+                "MaximumEventAgeInSeconds": 86400
+            }
+        }
+    ]
+}
+
